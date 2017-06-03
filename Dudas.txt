@@ -1,0 +1,35 @@
+* Matrix/StepNeighborMatrix contiene la matriz con la vencidad minima de un
+vértice a otro calculada con dijkstra. El problema es que cuando abri la
+matriz vi que en la diagonal habia una vecindad de 1 cuando deberia ser 0.
+Entre dos nodos consecutivos hay una vencidad de 2. Esta esto bien? Por si
+acaso he considerado esa matriz restandole uno a todos sus elementos.
+El motivo por el que hice eso es porque si dijktra me devolvia un Inf
+entonces ponia el valor a 0 para que no tuviese contribucion ese nodo en 
+el filtro de kalman.
+
+* Tengo la misma duda para la matriz de distancias euclideas. Los elementos
+de la diagonal como los pongo a 1 o a 0. Los nodos inalcanzables desde otro
+nodo los pogo a 0 o a Inf.
+
+* Revisar la forma en la que se obtienen los coeficientes del filtro gaussiano
+  en H_Steps_GaussianMatrix y H_DistanceGaussianMatrix
+
+* H Simetrica?
+
+* No se muy bien como aplicar el filtro laplaciano. Matlab solo me devuelve
+  una matriz 3x3 y no se como aplicarlo con la matriz de distancias ni en la
+matriz de saltos.
+
+
+===========================================================================
+MODELO REAL DEL CORAZON
+===========================================================================
+
+* En el modelo real, he estado buscando y no encuentro la señal del ECG.
+Si he visto la señal de EG que es la que tengo que hayar a partir de la del
+ECG.
+
+* Luego tampoco me cuadra algunas dimensiones. Por ejemplo la geometria
+atrial_model tiene 2039 nodos pero la señal EG tiene 2048 nodos. El
+torso_model tiene 659 nodos y la matriz de transferencia tiene 659x2048.
+Es como si en atrial_model me faltasen 9 vertices.

@@ -1,0 +1,11 @@
+Ik = 20
+Nk = 86
+SNR_v = 100
+var_w = 1.000000e-01
+H = Adjancency
+Execution time = 2.221004e+02
+***************************
+ RESULT: 
+***************************
+Correlation Mean: = 5.867258e-01
+RMSE Mean: = 1.979400e+01

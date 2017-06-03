@@ -1,0 +1,11 @@
+Ik = 20
+Nk = 258
+SNR_v = 10
+var_w = 1.000000e-01
+H = Neighbor
+Execution time = 1.040393e+03
+***************************
+ RESULT: 
+***************************
+Correlation Mean: = 1.345733e-01
+RMSE Mean: = 5.923615e+01

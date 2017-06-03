@@ -1,0 +1,26 @@
+1- mean(abs(x^2))
+2- snr 10db -> naturales
+3- Ps/SNR
+
+
+potencia_ecg_nodo1 = mean(abs(Y(1,:).^2))
+snr = 10^(SNR/10)
+potencia_ruido_nodo1 = potencia_ecg_nodo1 / snr
+ruido_nodo1 = sqrt(potencia_ruido_nodo1) * randn(1, 5000)
+
+SNR 0, 20, 40
+
+te quedas con los 2000 o 3000 instantes intermedios
+dibujar algunas
+quedarte con la parte que veas más estable
+Normalizarlas -> (dividir cada nodo por su potencia)
+
+2 modelos más
+Resultados:
+4 algoritmos
+3 modelos (esférico, y dos realistas de Fabricación Auricular)
+3 SNRs
+
+aux_ tickonof
+
+enviar indice

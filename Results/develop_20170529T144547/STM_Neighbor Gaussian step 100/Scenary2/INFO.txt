@@ -1,0 +1,11 @@
+Ik = 20
+Nk = 3
+SNR_v = 50
+var_w = 1.000000e-01
+H = Neighbor Gaussian step 100
+Execution time = 1.512756e+01
+***************************
+ RESULT: 
+***************************
+Correlation Mean: = 5.494871e-01
+RMSE Mean: = 3.126388e+00

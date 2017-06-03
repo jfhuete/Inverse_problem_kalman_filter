@@ -1,0 +1,11 @@
+Ik = 20
+Nk = 258
+SNR_v = 50
+var_w = 1.000000e-01
+H = Identity
+Execution time = 1.444045e+03
+***************************
+ RESULT: 
+***************************
+Correlation Mean: = 4.582377e-01
+RMSE Mean: = 5.311444e+01
