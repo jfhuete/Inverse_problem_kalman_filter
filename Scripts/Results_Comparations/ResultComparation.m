@@ -37,7 +37,7 @@ for j = 1:1:scenary
         end
     end
     for node = vertexs
-       phi_E_fig =  PlotResults(samples, results_phi_E, node, 'Phi E estimated comparation', 'Epicardial Potential V', Legends_names, Parameters_Texts);
+       phi_E_fig =  PlotResults(samples, results_phi_E, node, 'Phi E estimated comparation', 'Epicardial Potential (mV)', Legends_names, Parameters_Texts);
        quality_fig = PlotResults(samples, results_HQ, node, 'H Quality','Quality. 0 is the best', Legends_names, Parameters_Texts);
        saveas(phi_E_fig,[root_path '/results/' scenary_path '/figures/PhiEComparation_v' num2str(node) '.fig'], 'fig');
        saveas(quality_fig,[root_path '/results/' scenary_path '/figures/HQualityComparation_v' num2str(node) '.fig'], 'fig');

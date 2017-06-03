@@ -88,11 +88,11 @@ var_ws = [0.1];     % Noise power of model
 load(['./Matrix/' GeometryModel '/' Patient_Condition '/H_Matrix.mat']);
 
 Hs(1) = struct('Type','Identity','H',H_Identity);
-Hs(2) = struct('Type','Adjancency','H',H_Adjancency);
-Hs(3) = struct('Type','Neighbor Gaussian step 2','H',H_GaussSteps2);
-Hs(4) = struct('Type','Neighbor Gaussian step 5','H',H_GaussSteps5);
-Hs(5) = struct('Type','Distance Gaussian 2 Neighbor','H',H_GaussDistance2);
-Hs(6) = struct('Type','Distance Gaussian 5 Neighbor','H',H_GaussDistance5);
+% Hs(2) = struct('Type','Adjancency','H',H_Adjancency);
+% Hs(3) = struct('Type','Neighbor Gaussian step 2','H',H_GaussSteps2);
+% Hs(4) = struct('Type','Neighbor Gaussian step 5','H',H_GaussSteps5);
+% Hs(5) = struct('Type','Distance Gaussian 2 Neighbor','H',H_GaussDistance2);
+% Hs(6) = struct('Type','Distance Gaussian 5 Neighbor','H',H_GaussDistance5);
 
 % Instant to plot in Geometric. Instant range in 1:Nks
 instants = [1,30,50,86];

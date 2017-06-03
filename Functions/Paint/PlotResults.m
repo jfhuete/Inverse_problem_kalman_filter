@@ -19,7 +19,9 @@ figure1 = figure;
 set(figure1,'Position',[xpos, ypos, 1200, 768]);
 
 % Create axes
-axes1 = axes('Parent',figure1,'XTick',[samples],'XLim',[samples(1) samples(end)],...
+ticks = linspace(samples(1), samples(end),20); 
+ticks = round(100*ticks)/100;
+axes1 = axes('Parent',figure1,'XTick',ticks,'XLim',[samples(1) samples(end)],...
     'Position',[0.365 0.100180491551459 0.59912884333822 0.821216888361205]);
 
 hold(axes1,'all');

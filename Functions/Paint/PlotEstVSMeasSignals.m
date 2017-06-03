@@ -6,7 +6,7 @@ function [ f ] = PlotEstVSMeasSignals(torso_signal, signal,signal_est,HQ,instant
     plot(instants, torso_signal(320,:),'r');
     title(['Real vs Estimate Epicardial potential for node ' int2str(vertex)]);
     xlabel('Time instants');
-    ylabel('Torso Potential node 320 (mv)');
+    ylabel('Torso Potential node 320 (mV)');
     max_value = max(max(torso_signal(320,:)));
     min_value = min(min(torso_signal(320,:)));
     YInterval = max_value - min_value;
@@ -22,11 +22,11 @@ function [ f ] = PlotEstVSMeasSignals(torso_signal, signal,signal_est,HQ,instant
     YMargin = YInterval/2;
     axis([min(instants), max(instants),min_value-YMargin,max_value+YMargin])
     xlabel('Time instants');
-    ylabel('Epicardial Potential (mv)');
+    ylabel('Epicardial Potential (mV)');
     legend('Real epicardial potential',...
            'Estimate epicardial potential',...
            'location','Southeast');
-    
+    hold off;
     % Plot H quality
     subplot(3,1,3)
     plot(instants,HQ(vertex,:),'r');
@@ -38,8 +38,6 @@ function [ f ] = PlotEstVSMeasSignals(torso_signal, signal,signal_est,HQ,instant
     YInterval = max_value - min_value;
     YMargin = YInterval/2;
     axis([min(instants), max(instants),min_value-YMargin,max_value+YMargin])
-    hold off;
-    
     set(f, 'Position', [50, 50, 800, 600]);    
 end
 
