@@ -76,7 +76,7 @@ Patient_Condition = 'Healthy';
 % Patient_Condition = 'Fibrillation2';    % Only in Hearth_Geometry
 
 Iks = [20];
-Nks  = [86];
+Nks  = [30];
 
 % SNR of the problem (100 -> ideal; otherwise -> real)
 SNR_vs = [100];     % SNR of meassured equation in dB
@@ -95,7 +95,7 @@ Hs(1) = struct('Type','Identity','H',H_Identity);
 % Hs(6) = struct('Type','Distance Gaussian 5 Neighbor','H',H_GaussDistance5);
 
 % Instant to plot in Geometric. Instant range in 1:Nks
-instants = [1,30,50,86];
+instants = [1,20,30];
 perspective = 'all';        %Values 'single','top','bottom','all'
 
 % Vertex

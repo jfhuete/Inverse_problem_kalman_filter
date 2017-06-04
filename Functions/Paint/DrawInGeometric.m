@@ -23,7 +23,7 @@ function [aux,fig] = DrawInGeometric(hearth_model,torso_model, signal,torso_sign
     
     perspective = p.Results.perspectives;
     
-    Nplot = 1;
+    Nplot = 2;
     Aplot = 1;
     
     % Configure figure position
@@ -37,7 +37,7 @@ function [aux,fig] = DrawInGeometric(hearth_model,torso_model, signal,torso_sign
     fig = gcf;
     set(gcf,'Color','White','Position',[xpos ypos 1024 768]);
     clf;
-    
+    pause(1);
     switch perspective
         case 'single'
             Fplot = 1;
@@ -63,8 +63,49 @@ function [aux,fig] = DrawInGeometric(hearth_model,torso_model, signal,torso_sign
     
     hearth_faces    = hearth_model.faces;
     hearth_vertices = hearth_model.vertices;
+    
+    torso_faces    = torso_model.faces;
+    torso_vertices = torso_model.vertices;
 
     maxCAXIS=max(max(abs( signal(:,1:end) ))); % Green V=0
+    maxCAXIS_Torso=max(max(abs( torso_signal(:,1:end) ))); % Green V=0
+    
+    % Torso signal
+    for fp = 1:1:Fplot
+        Aplot = Aplot + (Nplot+1)*(fp-1);
+        subplot(Fplot,Nplot+1,Aplot);
+
+        aux = patch('Faces', torso_faces,...
+            'Vertices', torso_vertices,...
+            'FaceVertexCData', torso_signal(:,t));
+
+        caxis(maxCAXIS_Torso.*[-1 1]);
+        axis equal;
+        shading faceted;
+        colorbar
+        axis off
+
+        %%% Iluminacion
+        lighting phong
+        material([0.3 0.4 0.3])
+        shading interp;
+        view(0,0);
+        zoom(1.5);
+        camlight('infinite')
+
+        title(['Torso signal t=' num2str(t)])
+        Aplot = Aplot - (Nplot+1)*(fp-1);
+        if Aplot == Nplot
+            Aplot = Aplot + (Nplot+1)*(fp-1);
+            subplot(Fplot,Nplot+1,Aplot+1);
+            colorbar
+            axis off
+            caxis(maxCAXIS.*[-1 1]);
+            Aplot = Aplot - (Nplot+1)*(fp-1);
+        end
+    end
+
+    Aplot = Aplot +1;
     
     if Osignal ~= 0
         for fp = 1:1:Fplot
@@ -234,41 +275,57 @@ function [aux,fig] = DrawInGeometric(hearth_model,torso_model, signal,torso_sign
         case 'all'
             for n = 1:Nplot
                 subplot(Fplot,Nplot+1,n);
-                if strcmp(GeometryModel, 'Hearth_Geometry')
-                    view(-90, -10);
+                if n == 1
+                    view(0, 90);
                 else
-                    view(0,90);
+                    if strcmp(GeometryModel, 'Hearth_Geometry')
+                        view(-90, -10);
+                    else
+                        view(0,90);
+                    end
                 end
                 axis equal;
             end
             for n = 1:Nplot
                 subplot(Fplot,Nplot+1,n+(Nplot+1)*2);
-                if strcmp(GeometryModel, 'Hearth_Geometry')
-                    view(60, -90);
-                    zoom(1.3);
+                if n == 1
+                    view(180,0);
                 else
-                    view(0,-90);
+                    if strcmp(GeometryModel, 'Hearth_Geometry')
+                        view(60, -90);
+                        zoom(1.3);
+                    else
+                        view(0,-90);
+                    end
                 end
                 axis equal;
             end
         case 'top'
             for n = 1:Nplot
                 subplot(Fplot,Nplot+1,n);
-                if strcmp(GeometryModel, 'Hearth_Geometry')
-                    view(-90, -10);
+                if n == 1
+                    view(0, 90);
                 else
-                    view(0,90);
+                    if strcmp(GeometryModel, 'Hearth_Geometry')
+                        view(-90, -10);
+                    else
+                        view(0,90);
+                    end
                 end
                 axis equal;
             end
         case 'bottom'
             for n = 1:Nplot
                 subplot(Fplot,Nplot+1,n+(Nplot+1)*2);
-                if strcmp(GeometryModel, 'Hearth_Geometry')
-                    view(60, -90);
-                    zoom(1.3);
+                if n == 1
+                    view(180,0);
                 else
-                    view(0,-90);
+                    if strcmp(GeometryModel, 'Hearth_Geometry')
+                        view(60, -90);
+                        zoom(1.3);
+                    else
+                        view(0,-90);
+                    end
                 end
                 axis equal;
             end
