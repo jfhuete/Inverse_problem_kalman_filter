@@ -108,6 +108,7 @@ for Nk = Nks
                     
                     % Save 3D Plots
                     for instant = instants
+                        close all;
                         PlotInGeometry;
                     end;
                     

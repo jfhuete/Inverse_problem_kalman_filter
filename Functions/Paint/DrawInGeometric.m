@@ -277,6 +277,11 @@ function [aux,fig] = DrawInGeometric(hearth_model,torso_model, signal,torso_sign
                 subplot(Fplot,Nplot+1,n);
                 if n == 1
                     view(0, 90);
+                    if strcmp(GeometryModel, 'Espheric_Geometry')
+                        view(0, 89);
+                    else
+                        view(0,90);
+                    end
                 else
                     if strcmp(GeometryModel, 'Hearth_Geometry')
                         view(-90, -10);
@@ -284,12 +289,19 @@ function [aux,fig] = DrawInGeometric(hearth_model,torso_model, signal,torso_sign
                         view(0,90);
                     end
                 end
-                axis equal;
+                if strcmp(GeometryModel, 'Hearth_Geometry')
+                    axis equal;
+                end
+                camlight('infinite')
             end
             for n = 1:Nplot
                 subplot(Fplot,Nplot+1,n+(Nplot+1)*2);
                 if n == 1
-                    view(180,0);
+                    if strcmp(GeometryModel, 'Hearth_Geometry')
+                        view(180,0);
+                    else
+                        view(0,-90)
+                    end
                 else
                     if strcmp(GeometryModel, 'Hearth_Geometry')
                         view(60, -90);
@@ -298,7 +310,10 @@ function [aux,fig] = DrawInGeometric(hearth_model,torso_model, signal,torso_sign
                         view(0,-90);
                     end
                 end
-                axis equal;
+                if strcmp(GeometryModel, 'Hearth_Geometry')
+                    axis equal;
+                end
+                camlight('infinite')
             end
         case 'top'
             for n = 1:Nplot
@@ -313,6 +328,7 @@ function [aux,fig] = DrawInGeometric(hearth_model,torso_model, signal,torso_sign
                     end
                 end
                 axis equal;
+                camlight('infinite')
             end
         case 'bottom'
             for n = 1:Nplot
@@ -328,6 +344,7 @@ function [aux,fig] = DrawInGeometric(hearth_model,torso_model, signal,torso_sign
                     end
                 end
                 axis equal;
+                camlight('infinite')
             end
     end
 end

@@ -20,12 +20,17 @@ for j = 1:1:scenary
     for i = 1:1:N_matrix_dir
         H_matrix_name = H_matrix_dir(i).name;
         if strcmp(H_matrix_name, '.') == 0 && strcmp(H_matrix_name, '..') == 0 && strcmp(H_matrix_name, 'results') == 0
+            for k = Hs
+               if (strcmp(strrep(H_matrix_name(5:end), '_',' '), k.Type))
+                  abbr = k.Abbreviation;
+               end
+            end
             data_path = [root_path '/' H_matrix_name '/' scenary_path '/data/'];
             load([data_path 'phi_E_est.mat']);
             load([data_path 'error_meassured.mat']);
             load([data_path 'HQuality.mat']);
             load([data_path 'noise.mat']);
-            Matrix_names = strvcat(Matrix_names, strrep(H_matrix_name, '_',' '));
+            Matrix_names = strvcat(Matrix_names, abbr);
             Legends_names = strvcat(Legends_names,[strrep(H_matrix_name, '_',' ')...
                                                    sprintf('\n    * MRSE mean: ') num2str(RMSE_mean)...
                                                    sprintf('\n    * CORR mean: ') num2str(corr_mean)]);
@@ -46,9 +51,16 @@ for j = 1:1:scenary
     end
     close all;
     for instant = instants
-        geometric_fig = PlotResultsInGeometric(atrial_model, instant, results_phi_E, 'Phi E estimated comparation', Matrix_names, Parameters_Texts);
-        saveas(geometric_fig,[root_path '/results/' scenary_path '/geometricFig/PhiEComparation_t' num2str(instant) '.fig'], 'fig');
-        saveas(geometric_fig,[root_path '/results/' scenary_path '/geometricImg/PhiEComparation_t' num2str(instant) '.jpg']);
+        if instant > Nk
+            fprintf(['\nInstant exceed the max number '...
+                     'of instanst. Instant is change '...
+                     'to Nk value\n']);
+            instant = Nk;
+        end;
+        geometric_fig = PlotResultsInGeometric(atrial_model,torso_model, instant, results_phi_E, phi_T, 'Phi E estimated comparation', Matrix_names, Parameters_Texts);
+        savefig(gcf,[root_path '/results/' scenary_path '/geometricFig/PhiEComparation_t' num2str(instant) '.fig']);
+        saveas(gcf,[root_path '/results/' scenary_path '/geometricImg/PhiEComparation_t' num2str(instant) '.jpg']);
+        close all;
     end
     close all;
     if SaveVideo
@@ -56,8 +68,9 @@ for j = 1:1:scenary
         vw = VideoWriter([root_path '/results/' scenary_path '/video/result.avi']);
         vw.FrameRate = 45;
         vw.Quality = 100;
-        VideoResultInGeometric(vw, atrial_model, results_phi_E, samples, 'Phi E estimated comparation', Matrix_names, Parameters_Texts);
+        VideoResultInGeometric(vw, atrial_model,torso_model, results_phi_E,phi_T, samples, 'Phi E estimated comparation', Matrix_names, Parameters_Texts);
     end
+    close all;
     clear Matrix_names;
     clear Legends_names;
     clear Parameters_Texts;

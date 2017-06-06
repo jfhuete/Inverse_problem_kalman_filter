@@ -24,3 +24,11 @@ Resultados:
 aux_ tickonof
 
 enviar indice
+
+
+
+===========================================================================
+
+* Continuar ajuste en Plot result in geometry
+* DrawInGeometri zoom top y botom de torso desajustado
+* Probar otra vez con modelo corazon
