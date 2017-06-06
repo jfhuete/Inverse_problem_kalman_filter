@@ -67,7 +67,7 @@
 % GeometryModel -> Espheric_Geometry; Hearth_Geometry
 % GeometryModel = 'Espheric_Geometry';
 global GeometryModel;
-GeometryModel = 'Espheric_Geometry';
+GeometryModel = 'Hearth_Geometry';
 
 % Patient_Condition -> Healthy; Fibrillation1, Fibrillation2
 global Patient_Condition;
@@ -75,7 +75,7 @@ Patient_Condition = 'Healthy';
 % Patient_Condition = 'Fibrillation1';
 % Patient_Condition = 'Fibrillation2';    % Only in Hearth_Geometry
 
-Iks = [30];
+Iks = [300];
 Nks  = [5];
 
 % SNR of the problem (100 -> ideal; otherwise -> real)

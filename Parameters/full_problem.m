@@ -65,9 +65,9 @@
 % perspective = 'all';  % Values: 'single','top','bottom','all'
 
 % GeometryModel -> Espheric_Geometry; Hearth_Geometry
+% GeometryModel = 'Espheric_Geometry';
 global GeometryModel;
 GeometryModel = 'Espheric_Geometry';
-% GeometryModel = 'Hearth_Geometry';
 
 % Patient_Condition -> Healthy; Fibrillation1, Fibrillation2
 global Patient_Condition;
@@ -75,11 +75,11 @@ Patient_Condition = 'Healthy';
 % Patient_Condition = 'Fibrillation1';
 % Patient_Condition = 'Fibrillation2';    % Only in Hearth_Geometry
 
-Iks = [20];
-Nks  = [258];
+Iks = [1];
+Nks  = [300];
 
 % SNR of the problem (100 -> ideal; otherwise -> real)
-SNR_vs = [100, 50, 10];     % SNR of meassured equation in dB
+SNR_vs = [100, 50 , 0];     % SNR of meassured equation in dB
 
 % Noise power
 var_ws = [0.1];     % Noise power of model
@@ -87,19 +87,19 @@ var_ws = [0.1];     % Noise power of model
 % Transition Matrix H
 load(['./Matrix/' GeometryModel '/' Patient_Condition '/H_Matrix.mat']);
 
-Hs(1) = struct('Type','Identity','H',H_Identity);
-Hs(2) = struct('Type','Adjancency','H',H_Adjancency);
-Hs(3) = struct('Type','Neighbor Gaussian step 2','H',H_GaussSteps2);
-Hs(4) = struct('Type','Neighbor Gaussian step 5','H',H_GaussSteps5);
-Hs(5) = struct('Type','Distance Gaussian 2 Neighbor','H',H_GaussDistance2);
-Hs(6) = struct('Type','Distance Gaussian 5 Neighbor','H',H_GaussDistance5);
+Hs(1) = struct('Type','Identity','Abbreviation','I','H',H_Identity);
+Hs(2) = struct('Type','Adjancency','Abbreviation','ADY','H',H_Adjancency);
+Hs(3) = struct('Type','Neighbor Gaussian step 2','Abbreviation','MVP2','H',H_GaussSteps2);
+Hs(4) = struct('Type','Neighbor Gaussian step 5','Abbreviation','MVP5','H',H_GaussSteps5);
+Hs(5) = struct('Type','Distance Gaussian 2 Neighbor','Abbreviation','MVD2','H',H_GaussDistance2);
+Hs(6) = struct('Type','Distance Gaussian 5 Neighbor','Abbreviation','MVD5','H',H_GaussDistance5);
 
-% Instant to plot in Geometric. Instant range in 0:Nks
-instants = [20, 40, 60];
+% Instant to plot in Geometric. Instant range in 1:Nks
+instants = [10,50,156,246];
 perspective = 'all';        %Values 'single','top','bottom','all'
 
 % Vertex
-vertexs=[1, 20, 500, 1000, 2500];           % Vertex that you want to plot
+vertexs=[1,10,1400,2250];           % Vertex that you want to plot
 
 % Get and Save Video
 SaveVideo = true;
