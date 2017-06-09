@@ -29,7 +29,7 @@ function [video] = VideoInGeometric(vw,hearth_model,torso_model, signal,torso_si
     
     DrawInGeometric(hearth_model,torso_model, signal, torso_signal, 1,perspective,'Osignal',...
                           Osignal,'Esignal',Esignal,'Hquality',HQ);
-                      
+    pause(5)
     for t = 1:1:samples
         aux=DrawInGeometric(hearth_model,torso_model, signal, torso_signal, t,perspective,'Osignal',...
                              Osignal,'Esignal',Esignal,'Hquality',HQ);

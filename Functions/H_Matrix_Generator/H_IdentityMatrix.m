@@ -1,8 +1,8 @@
-function [ H ] = H_IdentityMatrix(faces)
+function [ H ] = H_IdentityMatrix(model)
+ 
+    [Nvertex, ~]= size(model.vertices);
 
-Nvertex = max(max(faces));
-
-H = eye(Nvertex);
+    H = eye(Nvertex);
 
 end
 
